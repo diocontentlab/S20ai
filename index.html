@@ -1,28 +1,88 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>S20 민아 태블릿 AI</title>
-    <style>
-      html, body {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        overflow: hidden;
-        background: #000;
-      }
-      iframe {
-        width: 100vw;
-        height: 100vh;
-        border: none;
-      }
-    </style>
-  </head>
-  <body>
-    <iframe
-      src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/make/MukuEtekCvSFJNXKZGOThY/S-20_%EB%AF%BC%EC%95%84-%ED%83%9C%EB%B8%94%EB%A6%BF-AI?node-id=0-1"
-      allowfullscreen>
-    </iframe>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>S20AI Prototype</title>
+  <meta name="theme-color" content="#00E5C5" />
+  <style>
+    :root { --mint:#00E5C5; --bg:#000; --text:#fff; }
+
+    * { box-sizing: border-box; }
+    html, body {
+      margin:0; padding:0; height:100%;
+      background:var(--bg); color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Apple SD Gothic Neo, Noto Sans KR, sans-serif;
+    }
+    .wrap {
+      height:100%; display:flex; align-items:center; justify-content:center;
+      padding:24px;
+    }
+    .card {
+      width:min(560px, 92vw);
+      border:1px solid rgba(255,255,255,.08);
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border-radius:20px;
+      padding:36px 28px;
+      text-align:center;
+      box-shadow: 0 10px 40px rgba(0,0,0,.5), inset 0 0 0 1px rgba(255,255,255,.04);
+      animation: rise .6s ease-out both;
+    }
+    .logo {
+      width:56px; height:56px; margin:0 auto 14px; border-radius:16px;
+      background: radial-gradient(circle at 30% 30%, #35ffe6, var(--mint) 40%, #12bda9 75%);
+      box-shadow: 0 6px 18px rgba(0,229,197,.45);
+    }
+    h1 { font-size:22px; margin:8px 0 6px; letter-spacing:.2px; }
+    p  { margin:0 0 18px; opacity:.8; font-size:14px; line-height:1.5; }
+
+    .spinner {
+      width:44px; height:44px; margin:10px auto 0; border-radius:50%;
+      border:3px solid rgba(255,255,255,.18);
+      border-top-color: var(--mint);
+      animation: spin 1s linear infinite;
+    }
+
+    .progress {
+      height:4px; width:100%; border-radius:999px; overflow:hidden;
+      background: rgba(255,255,255,.08); margin:18px 0 0;
+    }
+    .bar {
+      height:100%; width:0; background:linear-gradient(90deg, var(--mint), #6bffd9);
+      animation: load 1.2s ease-in-out forwards;
+    }
+
+    .hint { margin-top:14px; font-size:12px; opacity:.6; }
+
+    @keyframes spin { to { transform:rotate(360deg); } }
+    @keyframes load { to { width:100%; } }
+    @keyframes rise { from { transform:translateY(8px); opacity:0; } to { transform:none; opacity:1; } }
+
+    /* 안전영역 (노치) */
+    .safe { padding-bottom: env(safe-area-inset-bottom); }
+  </style>
+
+  <!-- 1.5초 후 자동 리다이렉트 (필요시 ms 조절) -->
+  <script>
+    const FIGMA_MAKE_URL =
+      "https://www.figma.com/make/MukuEtekCvSFJNXKZGOThY/S-20_%EB%AF%BC%EC%95%84-%ED%83%9C%EB%B8%94%EB%A6%BF-AI?node-id=0-1";
+    setTimeout(() => {
+      window.location.href = FIGMA_MAKE_URL;
+    }, 1500);
+  </script>
+</head>
+<body>
+  <div class="wrap safe">
+    <div class="card">
+      <div class="logo" aria-hidden="true"></div>
+      <h1>S20AI Prototype</h1>
+      <p>Launching Figma Make preview…<br/>Please wait a moment.</p>
+      <div class="spinner" aria-hidden="true"></div>
+      <div class="progress" role="progressbar" aria-label="Loading">
+        <div class="bar"></div>
+      </div>
+      <div class="hint">If you aren’t redirected, <a href="#" onclick="location.href=FIGMA_MAKE_URL" style="color:var(--mint);text-decoration:none;">tap here</a>.</div>
+    </div>
+  </div>
+</body>
 </html>
